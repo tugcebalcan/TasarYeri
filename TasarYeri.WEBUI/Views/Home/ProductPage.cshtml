@@ -1,0 +1,295 @@
+﻿@model TasarYeri.WEBUI.ViewModels.ProductsVM
+@{
+    ViewData["Title"] = "ProductPage";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<h1>ProductPage</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tasar Yeri | Ürün</title>
+    <link rel="shortcut icon" href="/images/lg.png">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/styles/product.css">
+    <link rel="stylesheet" type="text/css" href="/styles/product_responsive.css">
+</head>
+
+<body>
+    
+    <div class="super_container">
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+        <!-- Home -->
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Ürün Sayfası</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+
+                            <li><a href="#">Kategori</a></li>
+                            <li>@Model.Category.Name</li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product -->
+        <div class="product">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Product Image -->
+                    <div class="col-lg-6">
+                        <div class="product_image_slider_container">
+                            <img src="~/img/@Model.Product.PictureWay" height="320px" width="320px" alt="">
+                            @*<div id="slider" class="flexslider">
+                                    <ul class="slides">
+                                        <li>
+                                            <img src="images/has%C4%B1r2.webp" />
+                                        </li>
+                                        <li>
+                                            <img src="images/has%C4%B1r.webp" />
+                                        </li>
+                                        <li>
+                                            <img src="images/has%C4%B1r3.webp" />
+                                        </li>
+                                        <li>
+                                            <img src="images/has%C4%B1r4.webp" />
+                                        </li>
+                                        <li>
+                                            <img src="images/has%C4%B1r6.webp">
+                                    </ul>
+                                </div>
+                                <div class="carousel_container">
+                                    <div id="carousel" class="flexslider">
+                                        <ul class="slides">
+                                            <li>
+                                                <div><img src="images/has%C4%B1r2.webp" /></div>
+                                            </li>
+                                            <li>
+                                                <div><img src="images/has%C4%B1r.webp" /></div>
+                                            </li>
+                                            <li>
+                                                <div><img src="images/has%C4%B1r3.webp" /></div>
+                                            </li>
+                                            <li>
+                                                <div><img src="images/has%C4%B1r4.webp" /></div>
+                                            </li>
+                                            <li>
+                                                <div><img src="images/has%C4%B1r6.webp" /></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="fs_prev fs_nav disabled"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                    <div class="fs_next fs_nav"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                </div>*@
+                        </div>
+                    </div>
+                    <!-- Product Info -->
+                    <div class="col-lg-6 product_col">
+                        <div class="product_info">
+
+                            <div class="product_name">
+                                @Model.Product.Name
+                            </div>
+                            <div class="product_category">
+                                @Model.Category.Name
+                            </div>
+                            <div class="product_rating_container d-flex flex-row align-items-center justify-content-start">
+                                <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                <div class="product_reviews">4.7 |(3514 değerlendirme)</div>
+                            </div>
+                            <div class="product_price">
+                                @Model.Product.Price
+                            </div>
+                            <div class="product_text">
+                                Ürün Bilgisi:
+                                <p>@Model.Product.Detail</p>
+                                <p class="tasarimci">
+
+                                    <a asp-controller="Home" asp-action="SatıcıProfil" asp-route-name="@Model.Seller.Name" asp-route-id="@Model.Seller.ID">
+                                        Tasarımcı: @Model.Seller.Name @Model.Seller.LastName
+                                    </a>
+                                </p>
+
+                            </div>
+                            <div class="product_buttons">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                        <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                            <div><div>
+                                <img src="/images/heart_2.svg" class="svg" height="20px" width="20px" alt="" asp-area="uye" asp-controller="Home" asp-action="Favorites" asp-route-id="@User.Claims.FirstOrDefault(f => f.Type == System.Security.Claims.ClaimTypes.Sid).Value">
+                                                <div>+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                        <div>
+                                            <div>
+                                   <img src="/images/cart.svg" class="svg" height="20px" width="20px" alt=""  asp-area="uye" asp-controller="Cart" asp-action="MyCard" asp-route-id="@User.Claims.FirstOrDefault(f => f.Type == System.Security.Claims.ClaimTypes.Sid).Value">
+                                                <div>+</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                        <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                            <div>
+                                            <div>
+                                                <a asp-controller="Home" asp-action="YeniUye">
+                                                    <img src="/images/heart_2.svg" class="svg" alt="">
+                                                </a>
+                                                <div>+</div>
+                                            </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                        <div>
+                                            <div>
+                                                <a asp-controller="Home" asp-action="YeniUye">
+                                                    <img src="/images/cart.svg" class="svg" alt="">
+                                                </a>
+
+                                                <div>+</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+
+
+        <!-- Reviews -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="row">
+                <div class="col">
+                    <div class="reviews">
+                        <div class="reviews_title">Yorumlar</div>
+                        <div class="reviews_container">
+                            <ul>
+                                <!-- Review -->
+                                @foreach (Comment item in Model.Comments)
+                                {
+                                    <li class=" review clearfix">
+                                        <div class="review_image"><img src="images/pp.jpg" alt=""></div>
+                                        <div class="review_content">
+                                            <div class="review_name">
+                                                @item.UserName
+                                            </div>
+                                            @*<div class="review_date">
+                                                    @Model.Comment.Date
+                                                </div>*@
+                                            <div class="rating rating_4 review_rating" data-rating="4">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="review_text">
+                                                <p> @item.Comments </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <div class="review_form_container">
+                        <div class="review_form_title">Ürünü Yorumla</div>
+                        <div class="review_form_content">
+                            <form asp-action="YorumYap" method="post" id="review_form" class="review_form">
+                                <div class="deger">
+                                    Ürünü Değerlendir
+                                    <div class="rating">
+                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id" value="@Model.Product.ID" />
+                                <textarea class="review_form_text" name="comment" placeholder="Comments"></textarea>
+                                <button type="submit" class="review_form_button">Yorum Yap</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+   </div>
+
+    <!-- Leave a Review -->
+    @*<div class="row">
+            <div class="col">
+                <div class="review_form_container">
+                    <div class="review_form_title">Ürünü Yorumla</div>
+                    <div class="review_form_content">
+                        <form action="#" id="review_form" class="review_form">
+                            <div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                <input type="text" class="review_form_input" placeholder="Name" placeholder="LastName" required="required">
+
+                            </div>
+                            <div class="deger">
+                                Ürünü Değerlendir
+                                <div class="rating">
+                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                </div>
+                            </div>
+                            <textarea class="review_form_text" name="review_form_text" placeholder="Yorum"></textarea>
+                            <button type="submit" class="review_form_button">Yorum Yap</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/styles/bootstrap-4.1.2/popper.js"></script>
+    <script src="/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+    <script src="/plugins/greensock/TweenMax.min.js"></script>
+    <script src="/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="/plugins/easing/easing.js"></script>
+    <script src="/plugins/progressbar/progressbar.min.js"></script>
+    <script src="/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="/js/product.js"></script>
+
+</body>
+
+</html>
+
+

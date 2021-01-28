@@ -1,0 +1,206 @@
+﻿@model TasarYeri.WEBUI.ViewModels.ProductsVM
+
+
+<!DOCTYPE html>
+@{
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<html lang="en">
+<head>
+    <title>Tasar Yeri | Anasayfa</title>
+    <link rel="shortcut icon" href="/images/lg.png">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/styles/category_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/styles/index2.css">
+    <link rel="stylesheet" href="/plugins/font-awesome-4.7.0/css/font-awesome.css" />
+</head>
+<body>
+
+    <div class="super_container">
+        <div class="super_container_inner">
+            <div class="super_overlay"></div>
+
+            <!-- Home -->
+
+            <div class="home"> </div>
+
+            <!-- Products -->
+            <div class="products">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-3">
+                            <div class="section_title text-center">Tasar Yeri'nin Popülerleri</div>
+                        </div>
+                    </div>
+                    <div class="row page_nav_row">
+                        <div class="col">
+                            <div class="page_nav">
+                                <ul class="d-flex flex-row align-items-start justify-content-center">
+
+                                    @foreach (Category c in Model.Categories.Where(w => w.ParentID == null))
+                                    {
+                                        <li class="parent">
+                                            <a asp-controller="Home" asp-action="Products">@c.Name</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row products_row">
+
+                        <!-- Product -->
+                        @foreach (Product p in Model.Products)
+                        {    <div class="col-xl-4 col-md-6">
+                                <div class="product">
+                                    <div class="product_image">
+                                        <img src="~/productimg/@p.PictureWay" height="320px" width="320px" alt="">
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                                            <div>
+                                                <div>
+                                                    <div class="product_name">
+                                                        <ul>
+                                                            <li><a asp-controller="Home" asp-action="ProductPage" asp-route-catid="@p.CategoryID" asp-route-id="@p.ID" asp-route-name="@p.Name.Replace(" ", "").Replace("ı", "i")"> @p.Name</a></li>
+                                                        </ul>
+                                                    </div>m
+                                                    <div class="product_category">
+                                                        @p.Category.Name
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto text-right">
+                                                <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                                <div class="product_price text-right">
+                                                    @p.Price
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product_buttons">
+                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                   <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                       <div>
+                   <div>                                                           
+                  <img src="images/heart_2.svg" class="svg" alt="">                                                            
+                               <div>+</div>
+                            </div>
+                       </div>
+                         </div>
+                   <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                   <div>
+                                <div>
+                        <form method="post" class="@Model.Basket">
+                       <input type="hidden" asp-for="@Model.Basket.ProductID" value="@p.ID" />
+                         <div class="row"> 
+                            <div class="col-12 col-md-6 pb-1">
+      <button type="submit"  asp-area="uye" asp-controller="Home" asp-action="AddToCart" asp-route-id="@p.ID" value="Add to Cart" 
+                     class="btn btn-primary btn-squar btn-lg form-control" style="height:50px;"></button>
+                                                                                    </div>
+                                                                                </div> 
+                                                                      </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  }
+                    </div>
+                </div>
+            </div>
+            <!-- Boxes -->
+
+            <div class="boxes">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="boxes_container d-flex flex-row align-items-start justify-content-between flex-wrap">
+
+                                <!-- Box -->
+                                <div class="box">
+                                    <div class="background_image" style="background-image:url(/images/image1.jpeg)"></div>
+                                    <div class="box_content d-flex flex-row align-items-center justify-content-start">
+                                        <div class="box_left">
+                                            <div class="box_image">
+                                                <a href="category.html">
+                                                    <div class="background_image" style="background-image:url(/images/sabun2.jpg)"></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="box_right text-center">
+                                            <div class="box_title">En Çok Yorum Alanlar</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Box -->
+                                <div class="box">
+                                    <div class="background_image" style="background-image:url(/images/image0.jpeg)"></div>
+                                    <div class="box_content d-flex flex-row align-items-center justify-content-start">
+                                        <div class="box_left">
+                                            <div class="box_image">
+                                                <a href="category.html">
+                                                    <div class="background_image" style="background-image:url(/images/bileklik.jpg)"></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="box_right text-center">
+                                            <div class="box_title">Populer Seçimler</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Box -->
+                                <div class="box">
+                                    <div class="background_image" style="background-image:url(/images/image3.jpeg)"></div>
+                                    <div class="box_content d-flex flex-row align-items-center justify-content-start">
+                                        <div class="box_left">
+                                            <div class="box_image">
+                                                <a href="category.html">
+                                                    <div class="background_image" style="background-image:url(/images/ayd%C4%B1nlatma.jpg)"></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="box_right text-center">
+                                            <div class="box_title">Çok Satanlar</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/styles/bootstrap-4.1.2/popper.js"></script>
+    <script src="/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+    <script src="/plugins/greensock/TweenMax.min.js"></script>
+    <script src="/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="/plugins/easing/easing.js"></script>
+    <script src="/plugins/progressbar/progressbar.min.js"></script>
+    <script src="/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="/js/custom.js"></script>
+
+</body>
+</html>

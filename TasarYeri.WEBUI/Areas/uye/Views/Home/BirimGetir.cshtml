@@ -1,0 +1,168 @@
+﻿@model TasarYeri.DAL.Entities.Member
+
+@{
+    ViewData["Title"] = "BirimGetir";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+@*@using (Html.BeginForm("BirimGuncelle", "Home", FormMethod.Post))
+    {
+        <b>Üye Adı</b>
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+              <br />
+                                                 <b>Üye soyadı</b>
+                               @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                                                                                            <br />
+                                                            <b>Üye soyadı</b>
+                                                                            @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+                                                                                            <br />
+            <button class="btn btn-default" style="background-color:#0026ff">Birim Güncelle</button>
+    }*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tasar Yeri | Kişisel Sayfam</title>
+    <link rel="shortcut icon" href="/images/lg.png">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/styles/bilgi.css">
+    <link rel="stylesheet" type="text/css" href="/styles/product_responsive.css">
+</head>
+<body>
+
+    <div class="super_container">
+        <div class="super_container_inner">
+            <div class="super_overlay"></div>
+            <!-- Home -->
+            <div class="home">
+                <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                    <div class="home_content text-center">
+                        <div class="home_title">Kişisel Bilgilerim</div>
+                        <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                            <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Product -->
+                <div class="container-fluid">
+                    <div class="reviews">
+                        <div class="reviews_container">
+                            <ul>
+                                <!-- Review -->
+                                <div class="review clearfix">
+                                    <div class="review_image"><img src="~/memberimg/@Model.ImageWay" height="130" width="130"></div>
+                                    <div class="review_content">
+                                        <form role="form" method="post" asp-action="UpdateImage" enctype="multipart/form-data">
+                                            <fieldset>
+                                                <div class="review_name">
+                                                    <a> @Model.Name @Model.LastName </a>
+                                                </div>
+                                                <div class="review_text">
+                                                    <p> </p>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <p class="text-uppercase"> Resmini Güncelle </p>
+                                                    <div class="property">
+                                                        <label for="files">Resim seçiniz:</label>
+                                                        <input name="dnm" type="file" class="form-control-file input-lg" multiple="multiple" placeholder="Üye Resmi">
+                                                    </div>
+
+                                                </div>
+                                                <div>
+                                                    <input type="submit" class="form-control-danger" value="güncelle">
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                        <div class="footer_social">
+                                            <ul class="footer_social_list d-flex flex-row align-items-start justify-content-start">
+                                                <li><a href="#"><i class="fa fa-facebook" title="Zeynep Gök" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus" title="zeynepgok@gmail.com" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-instagram" title="zeynepgok" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="container1">
+                        <h2 class="text-center" id="title">Kişisel Bilgilerimi Güncelle</h2>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <form role="form" method="post" action="#">
+                                    <!--<fieldset>
+                                        <p class="text-uppercase pull-center">Güncelle</p>
+                                        <div class="form-group">
+                                            <input asp-for="@Model.Name" value="@Model.Name" class="form-control" />
+                                            <br />
+                                        </div>
+                                        <div class="form-group">
+                                            <input asp-for="@Model.LastName" value="@Model.LastName" class="form-control" />
+                                            <br />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input asp-for="@Model.Mail" value="@Model.Mail" class="form-control" />
+                                            <br />-->
+                                            @*<input type="email" name="Mail" id="email" class="form-control input-lg" placeholder="Email Address">*@
+                                        <!--</div>
+
+                                        <div>
+                                            <input type="submit" asp-action="BirimGetir" class="btn3" value="Güncelle">
+                                        </div>
+                                    </fieldset>-->
+                                </form>
+                            </div>
+                            <div class="col-md-2">
+                                <!-------null------>
+                            </div>
+                            <div class="col-md-5">
+                                <form role="form">
+                                    <fieldset>
+                                        <p class="text-uppercase"> Parola Yenile </p>
+
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Parola">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Parola Tekrar">
+                                        </div>
+                                        <div>
+                                            <input type="submit" class="btn4 " value="Yenile">
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+        </div>
+        
+    </div>
+
+        <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/styles/bootstrap-4.1.2/popper.js"></script>
+        <script src="/styles/bootstrap-4.1.2/bootstrap.min.js"></script>
+        <script src="/plugins/greensock/TweenMax.min.js"></script>
+        <script src="/plugins/greensock/TimelineMax.min.js"></script>
+        <script src="/plugins/scrollmagic/ScrollMagic.min.js"></script>
+        <script src="/plugins/greensock/animation.gsap.min.js"></script>
+        <script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
+        <script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+        <script src="/plugins/easing/easing.js"></script>
+        <script src="/plugins/progressbar/progressbar.min.js"></script>
+        <script src="/plugins/parallax-js-master/parallax.min.js"></script>
+        <script src="/plugins/flexslider/jquery.flexslider-min.js"></script>
+        <script src="/js/product.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,49 @@
+﻿@using TasarYeri.DAL.Entities
+
+@{ ViewData["Title"] = "Index";
+                Layout = "~/Views/Shared/_TestLayout.cshtml"; }
+<link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+<h1>Üye Sayfası</h1>
+<body>
+    <br />
+    <table class=" table table-bordered">
+        <tr>
+            <th>Sil</th>
+            <th>Guncelle</th>
+            <th>ID</th>
+            <th>Üye İsim</th>
+            <th>Soyad</th>
+            <th>Cinsiyet</th>
+            <th>Doğum Tarihi</th>
+ 
+            <th>Mail Adresi</th>
+            <th>Şifre</th>
+            <th>Telefon</th>
+            <th>IP Adresi</th>
+            <th>Üye Rolü </th>
+        </tr>
+
+        @foreach (var x in Model)
+        {
+<tr>
+    <td><a href="/Member/UyeSil/@x.ID" class=" btn btn-danger">Sil</a></td>
+    <td><a href="/Member/UyeGetir/@x.ID" class=" btn btn-info">Güncelle</a></td>
+    <td>@x.ID</td>
+    <td>@x.Name</td>
+    <td>@x.LastName</td>
+    <td>@x.Gender</td>
+    <td>@x.BirthDate</td>
+    
+
+    <td>@x.Mail</td>
+    <td>@x.Password</td>
+    <td>@x.Phone</td>
+    <td>@x.IP</td>
+    <td>@x.Role</td>
+
+
+
+</tr>            }
+    </table>
+    <a href="/Member/YeniUye" class="btn btn-dark">Yeni Üye</a>
+</body>

@@ -1,0 +1,22 @@
+﻿@model TasarYeri.DAL.Entities.Member
+
+
+<div class="dropdown show">
+    <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"><img src="/images/user.svg" height="24px" width="24px"></a>
+    <div class="dropdown-menu">
+
+        <a class="dropdown-item" asp-area="uye" asp-controller="Home" asp-action="BirimGetir">Kişisel Sayfam</a>
+        <a class="dropdown-item" asp-area="uye" asp-controller="Home" asp-action="Favorites">Favorilerim</a>
+        @if (Model.RoleNumber == 2)
+        {<a class="dropdown-item" asp-area="satici" asp-controller="Home" asp-action="SatıcıSayfası" asp-route-id="@Model.ID">Satıcı Sayfam</a>}
+        <a class="dropdown-item" asp-area="uye" asp-controller="Cart" asp-action="MyCard">Sepetim</a>
+        <a class="dropdown-item" asp-area="uye" asp-controller="Home" asp-action="Cikis">Çıkış Yap</a>
+
+    </div>
+</div>
+<div class="cart"><a asp-area="uye" asp-controller="Home" asp-action="MyCard"><div><img class="svg" src="/images/cart.svg" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
+@if (Model.RoleNumber == 1)
+{
+    <a asp-area="satici" asp-action="RolAta" asp-controller="Home" asp-route-id="@Model.ID" class="login100-form-btn">Sen de sat</a>
+    //  @await Component.InvokeAsync("UserOption")
+}
